@@ -11,6 +11,7 @@ import whatap.io.ko.WebhookCall.Domain.Information;
 import whatap.io.ko.WebhookCall.Service.CallingService;
 
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("webhook")
@@ -26,11 +27,10 @@ public class WebhookController {
 
     @PostMapping(value = "/message")
     public void ReceiveWebhook(@RequestBody Information information){
-        logger.info("Received Webhook from "+information.getProjectName()+" : "+information.getMessage());
-        try {
-            callingService.sendCall();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        LocalDateTime now = LocalDateTime.now();
+        information.setLocalDateTime(now);
+        logger.info("Received Webhook from "+information.getProjectName()+" : "+information.getMessage()+" at "+information.getLocalDateTime());
+        callingService.addInfoArrayList(information);
+
     }
 }

@@ -1,4 +1,7 @@
 package whatap.io.ko.WebhookCall.Domain;
+
+import java.time.LocalDateTime;
+
 /**
  * Webhook information
  */
@@ -16,6 +19,15 @@ public class Information {
     String metricName;  //optional
     String metricValue; //optional
     String metricThreshold; //optional
+    LocalDateTime localDateTime;
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
+    }
 
     public int getPcode() {
         return pcode;

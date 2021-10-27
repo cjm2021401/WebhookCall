@@ -13,39 +13,49 @@ import com.twilio.type.PhoneNumber;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import whatap.io.ko.WebhookCall.Controller.WebhookController;
 import whatap.io.ko.WebhookCall.Domain.Information;
 
 @Service
 public class CallingService {
-    private final String Sid = "";
-    private final String Token= "";
+
+    @Value("${Sid}")
+    private String Sid;
+
+    @Value("${Token}")
+    private String Token;
+
+    @Value("${limit_hour}")
+    private String x;
+
+    @Value("${number}")
+    private String y;
+
     private final String from = "+13202876958";
     private final String to = "+821044274435";
     private Logger logger = LoggerFactory.getLogger(CallingService.class);
-    private int x=0;
-    private int y=3;
-    //x시간동안 y개 수
+
 
     private ArrayList<Information> InfoArrayList = new ArrayList<>();
     //시간 , information
     public void addInfoArrayList(Information information){
         InfoArrayList.add(information);
+        System.out.println(Token);
         checkList();
     }
 
     public void checkList(){
-        if(InfoArrayList.size()>y){
+        if(InfoArrayList.size()>Integer.parseInt(y)){
             InfoArrayList.remove(0);
         }
 
-        if(InfoArrayList.size()==y){
+        if(InfoArrayList.size()==Integer.parseInt(y)){
 
             LocalDateTime start=InfoArrayList.get(0).getLocalDateTime();
             LocalDateTime end=InfoArrayList.get(InfoArrayList.size()-1).getLocalDateTime();
             long time= ChronoUnit.HOURS.between(start,end);
-            if(time<=x){
+            if(time<=Integer.parseInt(x)){
                 boolean success=true;
                 try {
                     sendCall();

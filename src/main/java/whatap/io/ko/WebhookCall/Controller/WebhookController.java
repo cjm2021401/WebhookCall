@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import whatap.io.ko.WebhookCall.Domain.Information;
 import whatap.io.ko.WebhookCall.Service.CallingService;
-
-import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 
 @RestController

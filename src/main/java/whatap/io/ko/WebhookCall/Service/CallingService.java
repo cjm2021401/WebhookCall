@@ -17,6 +17,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import whatap.io.ko.WebhookCall.Domain.Information;
 
+/**
+ * Count the number of webhooks received
+ * Make a call to me
+ */
 @Service
 public class CallingService {
 
@@ -32,16 +36,18 @@ public class CallingService {
     @Value("${number}")
     private String y;
 
+    /**
+     * Number to use when calling
+     */
     private final String from = "+13202876958";
     private final String to = "+821044274435";
+
     private Logger logger = LoggerFactory.getLogger(CallingService.class);
 
-
     private ArrayList<Information> InfoArrayList = new ArrayList<>();
-    //시간 , information
+
     public void addInfoArrayList(Information information){
         InfoArrayList.add(information);
-        System.out.println(Token);
         checkList();
     }
 
@@ -74,8 +80,8 @@ public class CallingService {
     public void sendCall() throws URISyntaxException {
         Twilio.init(Sid, Token);
 
-
         Call call = Call.creator(new PhoneNumber(to), new PhoneNumber(from),
                 new URI("http://demo.twilio.com/docs/voice.xml")).create();
     }
+
 }

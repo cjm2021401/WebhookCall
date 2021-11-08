@@ -31,4 +31,13 @@ public class WebhookController {
         callingService.addInfoArrayList(information);
 
     }
+
+    @PostMapping(value="/check")
+    public void check(@RequestBody String string){
+        if(string.indexOf("ResponseCode=200")!=-1){
+            logger.info("Client got a call"+" at "+LocalDateTime.now());
+            callingService.setAckNowldge();
+        }
+    }
+
 }

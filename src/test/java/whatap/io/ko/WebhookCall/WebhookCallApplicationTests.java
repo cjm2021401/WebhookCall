@@ -17,20 +17,5 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(OutputCaptureExtension.class)
 class WebhookCallApplicationTests {
 
-	@Autowired
-	private CallingService callingService;
-
-	@Test
-	void 전화조건검사(CapturedOutput capturedOutput){
-		Information information=new Information();
-		for(int i=0; i<3; i++){
-			information.setMessage("TEST");
-			LocalDateTime now = LocalDateTime.now();
-			information.setLocalDateTime(now);
-			callingService.addInfoArrayList(information);
-		}
-		assertThat(capturedOutput).toString().contains("We make a call to client");
-
-	}
 
 }

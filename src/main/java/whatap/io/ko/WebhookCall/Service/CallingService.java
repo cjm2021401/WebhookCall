@@ -99,7 +99,7 @@ public class CallingService {
                     e.printStackTrace();
                 }
                finally {
-                    if(success) logger.info("We make a call to client at "+LocalDateTime.now());
+                    if(success) logger.info("We make a call to client at "+LocalDateTime.now()+" to "+to);
                     else logger.error("we fail to make a call to client");
                 }
             }

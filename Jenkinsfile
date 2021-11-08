@@ -9,7 +9,7 @@ pipeline {
 
     stage('Upload') {
       steps {
-        sh 'aws s3 cp build/libs/application.jar s3://jenkins-deploy-application2/application.war --region us-east-1'
+        sh 'aws s3 cp build/libs/application.war s3://jenkins-deploy-application2/application.war --region us-east-1'
       }
     }
 

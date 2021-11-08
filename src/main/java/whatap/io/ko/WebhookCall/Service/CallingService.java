@@ -120,7 +120,7 @@ public class CallingService {
         ackNoldgeInfoRepository.deleteAll();
         AckNoldgeInfo ackNoldgeInfo=new AckNoldgeInfo("true", now.toString());
         ackNoldgeInfoRepository.insert(ackNoldgeInfo);
-        logger.info("We won't call to cleint at "+x+"hour");
+        logger.info("We won't call to cleint for "+x+"hour from "+ackNoldgeInfo.getTime());
     }
 
 }

@@ -15,8 +15,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'aws elasticbeanstalk create-application-version --region us-east-1 --application-name WhatapProject --version-label ${BUILD_TAG} --source-bundle S3Bucket="jenkins-deploy-application2”,S3Key="application.jar"'
-                sh 'aws elasticbeanstalk update-environment --region us-east-1 --environment-name Whatapproject-env --version-label ${BUILD_TAG}'
+                sh 'aws elasticbeanstalk create-application-version --region us-east-1 --application-name WhatapProject --version-label ${BUILD_TAG} --source-bundle S3Bucket="jenkins-deploy-application2",S3Key="application.jar"'
+                sh 'aws elasticbeanstalk update-environment --region us-east-1 --environment-name Whatapproject-env --version-label ${BUILD_TAG}'
             }
         }
     }
